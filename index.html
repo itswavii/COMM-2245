@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Your Name] - Professional Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #B7245C 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+        }
+
+        header {
+            background: linear-gradient(135deg, #B7245C 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #2d3748;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background: #B7245C;
+            border-bottom: 3px solid #0E131F;
+        }
+
+        .content {
+            padding: 3rem 2rem;
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content h2 {
+            color: #B7245C;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #B7245C;
+        }
+
+        .content h3 {
+            color: #764ba2;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            font-size: 1.05rem;
+        }
+
+        .intro-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 5px solid #B7245C;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .skill-card {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #B7245C;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .education-item {
+            background: #f7fafc;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            border-left: 5px solid #764ba2;
+        }
+
+        .education-item h4 {
+            color: #B7245C;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item .date {
+            color: #718096;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .portfolio-item {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .portfolio-item h4 {
+            color: #B7245C;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #B7245C;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .contact-info a {
+            color: #B7245C;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, #B7245C 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li a {
+                padding: 0.75rem 1rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 2rem 1rem;
+            }
+
+            .skills-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Xavier Pezzano</h1>
+            <p>Computer Science Major</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#home" class="nav-link active" onclick="showPage('home')">Home</a></li>
+                <li><a href="#about" class="nav-link" onclick="showPage('about')">About</a></li>
+                <li><a href="#education" class="nav-link" onclick="showPage('education')">Education</a></li>
+                <li><a href="#portfolio" class="nav-link" onclick="showPage('portfolio')">Portfolio</a></li>
+                <li><a href="#contact" class="nav-link" onclick="showPage('contact')">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div id="home" class="content active">
+            <h2>Welcome to My Professional Portfolio</h2>
+            
+            <div class="intro-section">
+                <p>Welcome to my personal and professional portfolio website. I am excited to share my journey, accomplishments, and aspirations with you through this digital platform. This website serves as a comprehensive overview of my academic background, professional experiences, and creative projects that have shaped who I am today.</p>
+            </div>
+
+            <p>This website gives you a look at who I am—both professionally and personally. You'll find information about my skills, education, projects, and what I'm currently working toward. I created this as part of my web design class, but I plan to keep updating it as I grow, learn new things, and take on new projects. Whether you're a potential employer, someone I might collaborate with, or just curious about my work, I hope this site gives you a good sense of what I'm about.</p>
+
+            <h3>What You'll Find Here</h3>
+            
+            <p>This portfolio is organized into several key sections, each 
+                designed to showcase different aspects of my professional 
+                profile. In the About section, you will learn about my 
+                background, and the values that 
+                continue to drive me further. The Education section 
+                highlights my academic achievements and the knowledge I 
+                have gained through learning experiences. 
+                My Portfolio section presents examples of my work, 
+                demonstrating applications of my skills and creativity.</p>
+
+            <p>The creation of this website itself represents my technical capabilities and attention to detail. As this is my first ever website built from scratch there may be issues or bugs, If you a reader stumble onto any of these issues feel free to reach out to me in my Contact section and I will make sure to fix the issue as soon as possible. Thank you so much for viewing my portfolio and I hope you enjoy!</p>
+        </div>
+
+        <div id="about" class="content">
+            <h2>About Me</h2>
+            
+            <div class="intro-section">
+                <p>My name is Xavier Pezzano, and I am passionate about Computer Science, Game Developent and the Arts. I am studing at the University of New Mexico for my degree in Computer Science with a Minor in Mathmatics. I love to draw, read, and do anything creative during my free time. I also work to improve my devolpmental skills by making games as well as projects on the side when I have time. When it comes to daily life I am extreamly focused on my education and work to improve myself daily by making sure I stay on track as well as staying healthy.</p>
+            </div>
+
+            <h3>Background</h3>
+            
+            <p>Before coming to collage I had little to no knowledge on the Computer Science or software development as a whole. Due to this lack of knowledge I have had to work harder than those around me to catch up but this hasnt stopped me from improving and excelling. What I do have extensive history and knowledge on is art and design. I have won numerious art contests and awards and have an eye for the design process which I take with me into every project I choose to persue. I belive first looks matter and making sure a project or task being worked on must look pleasing for the viewer. I hope to merge my two intrests with Game Development in the future. Carrer and professional backgrounds I have are working with IT here at UNM as well as working as a student mentor for highschool students entering into collage with ENLACE.</p>
+
+            <h3>Skills and Expertise</h3>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h4>Independence & Self-Direction</h4>
+                    <p>As a student mentor, I was responsible for creating my own curriculum from scratch and recruiting students for each presentation. This role taught me how to take initiative, plan effectively, and execute projects without constant oversight. Being able to work independently has become one of my strongest assets. Whether I'm tackling a coding project, organizing an event, or learning something new on my own.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Determination & Adaptability</h4>
+                    <p>I didn't come into college with a computer science background, which meant I was starting from square one while many of my peers already had years of experience. Instead of letting that discourage me, I used it as motivation to work harder. I put in extra hours, sought out resources, asked questions, and pushed through the frustration of not understanding something right away. </p>
+                </div>
+                <div class="skill-card">
+                    <h4>Creative Problem-Solving & Design</h4>
+                    <p>My background in graphic design and the arts has given me an eye for aesthetics and a natural inclination toward creative thinking. I care about making things not just functional, but visually appealing and thoughtfully designed. Whether it's building a website, creating a presentation, or working on a personal art project, I focus on how things look and feel, not just how they work. I believe that good design matters.</p>
+                </div>
+            </div>
+
+            <p>Beyond my technical skills, I pride myself on possessing strong communication skills that enhance my professional relationships and project outcomes. These include effective communication, leadership abilities, time management, and the capacity to work well under pressure.</p>
+
+            </div>
+
+        <div id="education" class="content">
+            <h2>Education</h2>
+            
+            <div class="intro-section">
+                <p>My educational journey wasnt allways easy. College forced me to develop real work habits and discipline. I had to figure out time management, how to break down complex problems, and when to ask for help instead of just winging it. It wasn't always smooth, and there were definitely some rough patches, but those struggles taught me more than any easy A ever could. This has changed my outlook on learning as a whole for the better. </p>
+            </div>
+
+            <div class="education-item">
+                <h4>Bachelor of Science, Computer Science</h4>
+                <p class="date">University of New Mexico | 2027</p>
+                <p>During my time at the University of New Mexcio, I focused on Computer Science as well as Mathmatics courses. My coursework included challenging classes such as Development of Large Programs as well as various Game Development courses, which equipped me with both theoretical understanding and practical skills applicable to real-world situations.</p>
+                <p>Key achievements during this program included passing my Data Organization class which was known to weed out many CS students. I also participated in Game Jams as well as plan to try and enter into a hackathon in the future.</p>
+            </div>
+
+            <div class="education-item">
+                <h4>CompTIA A+ Certification</h4>
+                <p class="date">CompTIA | 2026</p>
+                <p>To complement my primary degree, I pursued my A+ certification at CompTIA. This experience allows me to work as a level 1 IT help desk support specialalist aiding me in the tech professional space.</p>
+            </div>
+
+            <h3>Continuing Education and Professional Development</h3>
+            
+            <p>I'm currently working toward my computer science degree, and my educational journey has been a mix of challenges, growth, and discovering what I'm truly passionate about. Right now, I'm focused on building a strong foundation in programming, problem-solving, and understanding new cutting edge technology.
+
+As I continue my studies, I'm actively seeking internship opportunities where I can gain hands-on experience and learn from professionals in the field. I'm also preparing to take my CompTIA A+ certification soon, which I see as an important step in validating my technical skills and opening doors to new opportunities. Beyond internships, I'm exploring apprenticeships and any other learning experiences that will help me grow as a developer and IT professional.</p>
+        
+        </div>
+
+        <div id="portfolio" class="content">
+            <h2>Portfolio</h2>
+            
+            <div class="intro-section">
+                <p>This portfolio section showcases a selection projects that demonstrate my skills and creativty. Each project represents a unique chllenge that pushed me to grow and learn while also showcasing my enjoyment and passion for my craft. Each choice for my portfolio at this moment starts small and builds up to my my most ambitious project and shows a steady progression of improvment and the scope of my projects increasing with each rendition.</p>
+            </div>
+
+            <p>The projects featured here span different areas of my expertise and illustrate my versatility. I will show not only design projects but also technically projects as well as a cobination of both. Each piece tells a story of problem solving, numerous learning experinces and succesful outcomes. I belive these selected in particular best represent my capabilities at this time and will only improve from here.</p>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <h4>Noita Inspired Sand Dropper DEMO</h4>
+                    <p><strong>Description:</strong> This Project was an assignment for my Intro Into Java class Final this project consisted of making a sand dropper game that had its own physics. For example if placing sand the sand would spread and pile like in the real world, Water would spread and level out, metal would stay put suspended in air manipulating how sand and water would fall. Lastly there was ice that would freeze all water touching it and oil which acted like water but would always float on top of water.</p>
+                    <p><strong>Technologies/Skills:</strong> Required use of  GUI for the interface as well as basic knowledge of Java as well as how to use your development enviorment. A grasp of object oriented programming was extreamly important to making sure elements worked together properly.</p>
+                    <p><strong>Outcome:</strong> This project may have pushed me the hardest sheerly due to the fact that I had basic no knowledge of software development beforehand, I was pushed to learn and adapt so quickly I know I made some mistakes. This porject game me a firm understanding of the basics of java as well as object oriented programming which helped tremdously in projects and classes moving forward. I would love to revist this project and see how I can improve and make work better in the future.</p>
+                </div>
+
+                <div class="portfolio-item">
+                    <h4>Othello 2-Player/AI Game</h4>
+                    <p><strong>Description:</strong> This Project was an assignment for my Intermediate Java class and was around the middle of the semester and was two players trying to get 5 of their pieces in a row simlar to connect 4 but on a 2D flat grid with extra limitations. I was also in charge of programming an AI opponent if the player chose that made smart decisions. 
+                    <p><strong>Technologies/Skills:</strong> Required the use of a GUI to display the game board as well as a strong understanding of the Java fundamentals. I was required to use problem solving skills to code and making an intelligent AI that made moves to win and beat the player.</p>
+                    <p><strong>Outcome:</strong> This project was hard for a diffrent reason that the Noita Project as it was easy to impliment the rules of the game and point scoring and background actions. The hard part was developing an AI that made moves that were smart, I wasnt allowed to make an AI that just made the next avalible move as that would be too easy, the way I got around this issue was by assigning a point value to pieces that were in a row therefore allowing the AI to know which pieces would get it closer to winning and if the point value of the players color or the AI's color was larger would determine if the AI would block the players next move or advance their own board state.</p>
+                </div>
+
+                <div class="portfolio-item">
+                    <h4>Kitty Klicker Idle Game</h4>
+                    <p><strong>Description:</strong> Lastly this project was my final for Introduction to Game Design and was an Idle, Clicker Game that consisted of clicking a kitty to get currency to buy upgrades that increased your currency more. This would continue until you had enough currency to prestiege and then retart at a faster accelerated pace. All assests were made myself. </p>
+                    <p><strong>Technologies/Skills:</strong> This projected required skills in design, conceptuilzing ideas and executing them, grasp on pixel art and required tools, Unity Engine to run my game, as well as learning the C# programming language.</p>
+                    <p><strong>Outcome:</strong> Saying the Noita Game was the harderst was a mistake this project by far pushed me the most, I was tasked with learning a game engine, learn a new programming language as well learn to deliver good looking pixel art all for this final project. I was pushed the furtherest in this project than in any of my others. Kitty Klicker was my most succesful project and is my prize possession I worked hard for months to have it come out perfectly and It has been the most I've improved. I dont plan to come back to this, but I do have many plans for other video games in the future with bigger scope than Kitty Klicker.</p>
+                </div>
+            </div>
+
+            <h3>Lessons Learned and Growth</h3>
+            
+            <p>Each project in my portfolio has contributed to my professional growth in meaningful ways. I would not be where I am without these three projects they have shaped and helped me improve in ways I have yet to notice. I would have never learned C# was it not for my game developement class. I also would have never found my love for creating games without my final project which has now shown me there is a path were I can combine my two passions of design and art with software development and mathmatics.</p>
+
+            <p>The projects showcased here represent not just completed work, but ongoing learning experiences that continue to influence how I approach new challenges. When I first made my Noita game it felt like the largest mountain to climb and now it seems like a small hill in comparison now, I hope in a couple years my Kitty Klicker game seems the same way. These projects have helped me improve and shape the scholar I am here at UNM and will continue to stay with me as I learn and develope new projects in the future. If any feedback or advice can come from me sharing these please reach out on my contacts page and let me know. Thank you!</p>
+        </div>
+
+        <div id="contact" class="content">
+            <h2>Contact Information</h2>
+            
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <p>Please feel free to reach out via email:</p>
+                <p>If prefered method of communication is by phone please include this request in your email. Thank you!</p>
+                <p><a href="mailto:xpezzano@icloud.com">xpezzano@icloud.com</a></p>
+            </div>
+
+            <p>Thank you for taking the time to explore my portfolio. I am always interested in connecting with professionals, employers, and anyone who shares similar interests or goals. Whether you have questions about my work, want to discuss potential opportunities, or simply wish to network, I encourage you to reach out. I strive to respond to all inquiries promptly and thoughtfully.</p>
+
+            <h3>Professional Networking</h3>
+            
+            <p>While I am not currently active on professional networking platforms like LinkedIn or GitHub, I plan to establish a presence on these sites in the near future to connect with other professionals and share my work. I am also in the process of launching an Instagram page where I will be showcasing my art pieces and creative projects. I believe that building strong professional relationships and having an online presence are essential to career growth and creative development. As I develop these platforms, I look forward to sharing my work, and expanding my professional network. In the meantime, I am always open to email communication and welcome opportunities to connect.</p>
+
+            <h3>Collaboration Opportunities</h3>
+            
+            <p>I am particularly interested in opportunities that involve the Information Technology field as well as game desgin or game development opportunities. My ideal collaborative projects are those that require innovative problem-solving, and those that truly inspire and motivate me to learn and improve. If you have a project or opportunity that aligns with my skills and interests, I would be delighted to discuss how we might work together to achieve exceptional results.</p>
+
+            <p>When reaching out, please feel free to include details about your inquiry, project, or opportunity. The more information you can provide, the better. </p>
+
+            <h3>Response Time and Communication Preferences</h3>
+            
+            <p>I will make an effort to respond to emails within twenty-four to forty-eight hours. For urgent matters, please indicate this in your subject line, and I will prioritize your message accordingly. While email remains my preferred method of initial contact, I am flexible and happy to accommodate other communication preferences. Whether through video calls, phone conversations, or in-person meetings when feasible, I am committed to maintaining open and effective lines of communication.</p>
+
+            </div>
+
+        <footer>
+            <p>&copy; 2025 Xavier Pezzano. All rights reserved. | <a href="mailto:xpezzano@icloud.com" style="color: #fff; text-decoration: underline;">Contact Me</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            const contents = document.querySelectorAll('.content');
+            const links = document.querySelectorAll('.nav-link');
+            
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            links.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            document.getElementById(pageId).classList.add('active');
+            event.target.classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
